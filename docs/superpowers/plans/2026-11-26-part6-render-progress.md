@@ -36,3 +36,20 @@
   200/200/401/200. Preserve secrets outside Git and record actual cloud evidence.
 - Current Railway docs deprecate legacy railway.toml config; service settings/IaC
   must also explicitly set Docker root, health check and restart configuration.
+- Railway workspace f6f507a8-fb3e-4e7f-af9f-2f6f472347c2; project
+  4a362d25-2fc8-43ea-9e75-2a7b526494f7; production environment
+  ac71a226-29db-42be-90b0-0fb0b2676b42. Created only two services + Redis volume.
+- Empty staged service could not accept update-service before its instance existed
+  (Service Instance not found). Applied reviewed nondestructive creation first,
+  then staged root/health/resources/source settings and applied them. Both apply
+  calls covered by the user's explicit request to deploy on Railway.
+- Railway deploy eaf7bc66-30a6-4eeb-bdcf-08ac3ffdef5c SUCCESS from fork branch,
+  Dockerfile builder, 2 uvicorn workers; Redis deployment SUCCESS, 500MB volume.
+- Public https://day14-agent-production-3dd6af85.up.railway.app verified
+  2026-11-26T07:54:30Z: /health 200, /ready 200, POST /ask no key 401, valid key 200.
+- Local full harness after Railway config: PASS 12/12, 43/43; integration 14/14.
+- User explicitly reiterated: only their fork, never the programme's repository.
+  All pushes use origin (Basrot), branch codex/part6-render. main/upstream untouched.
+- Added public check script and credential-free report; local .env.railway ignored.
+- Native browser capture deferred because active user input blocked window control.
+  No screenshots fabricated; three CP6 images still need capture.

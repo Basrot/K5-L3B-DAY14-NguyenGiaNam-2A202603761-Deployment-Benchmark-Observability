@@ -1,0 +1,56 @@
+{
+  "checked_at": "2026-11-26",
+  "project_id": "4a362d25-2fc8-43ea-9e75-2a7b526494f7",
+  "environment_id": "ac71a226-29db-42be-90b0-0fb0b2676b42",
+  "url": "https://day14-agent-production-3dd6af85.up.railway.app",
+  "source": {
+    "repo": "Basrot/K5-L3B-DAY14-NguyenGiaNam-2A202603761-Deployment-Benchmark-Observability",
+    "branch": "codex/part6-render",
+    "deployment_commit": "0c73b13"
+  },
+  "summary": {
+    "totalServices": 2,
+    "servicesWithIssues": 0,
+    "totalFailures": 0
+  },
+  "services": [
+    {
+      "id": "45789e8f-5d14-42f7-8a47-b0f6fe89da74",
+      "name": "day14-agent",
+      "state": "online",
+      "has_volume": false,
+      "replicas": {
+        "running": 1,
+        "crashed": 0,
+        "total": 1
+      },
+      "deployments": [
+        {
+          "id": "eaf7bc66-30a6-4eeb-bdcf-08ac3ffdef5c",
+          "status": "SUCCESS",
+          "createdAt": "2026-11-26T07:53:26.726Z",
+          "statusUpdatedAt": "2026-11-26T07:53:49.634Z"
+        }
+      ]
+    },
+    {
+      "id": "3a8b2f7b-f7f2-4a0b-8fc4-6508e610637e",
+      "name": "Redis",
+      "state": "online",
+      "has_volume": true,
+      "replicas": {
+        "running": 1,
+        "crashed": 0,
+        "total": 1
+      },
+      "deployments": [
+        {
+          "id": "f3865056-4d91-40ad-a941-aac4561214db",
+          "status": "SUCCESS",
+          "createdAt": "2026-11-26T07:51:23.685Z",
+          "statusUpdatedAt": "2026-11-26T07:51:28.470Z"
+        }
+      ]
+    }
+  ]
+}

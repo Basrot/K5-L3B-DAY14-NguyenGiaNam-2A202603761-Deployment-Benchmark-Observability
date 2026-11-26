@@ -1,89 +1,134 @@
-# Part 6 — Render deployment
+# Part 6 — Railway deployment
 
-## Trạng thái
+## URL và kết quả thực tế
 
-Part 6 đã được kiểm tra local ngày 2026-11-26:
+**URL public:** https://day14-agent-production-3dd6af85.up.railway.app
 
-- Script chấm nguyên bản trên Linux: **PASS 12/12**, **42/42 checks passed**.
-- Integration test với Redis thật: **14 tests passed**.
-- Stack Compose với `PORT=18014`: `/health` 200, `/ready` 200, `/ask` không key 401,
-  `/ask` có key 200; report `06-lab-complete/verification/part6-compose.json`.
-- Image: **274 MB**, dưới giới hạn 500 MB.
-- SIGTERM khi có request: request trả 200, process thoát với exit code 0.
-- Docker stop: exit code 0, **0.7 giây** trong lần chạy ghi nhận.
+- [Health](https://day14-agent-production-3dd6af85.up.railway.app/health)
+- [Readiness](https://day14-agent-production-3dd6af85.up.railway.app/ready)
+- [API docs](https://day14-agent-production-3dd6af85.up.railway.app/docs)
+- [Railway project](https://railway.com/project/4a362d25-2fc8-43ea-9e75-2a7b526494f7)
 
-Bằng chứng: `06-lab-complete/verification/part6-readiness.txt` và
-`06-lab-complete/verification/part6-integration.txt`.
-**Cloud đang bị chặn:** Render trả `billing_suspended` khi lập kế hoạch Blueprint
-ngày 2026-11-26 cho cả Web Service và Key Value. Chưa có URL public, service mới
-chưa được tạo/chạy và chưa có kết quả HTTP cloud. Cần chủ tài khoản xử lý trạng
-thái Billing của workspace trước khi tiếp tục.
+Kiểm tra public ngày **2026-11-26 lúc 14:54 GMT+7** bằng HTTP thật:
 
-- Workspace đã được học viên xác nhận: `My Workspace`.
-- Nhánh đã push: `codex/part6-render`.
-- Commit triển khai: `9049617`.
-- Blueprint: `exs-dc3u5l6c6qcc73buhek0` (`Day14 Production Agent`).
-- Planning outcome: `failed`; sync: `null`; không approve một plan thất bại.
-- Auto-sync đang tắt; sau khi Billing được xử lý, lập plan lại và duyệt thay đổi
-  tạo 2 dịch vụ Free trước khi apply.
+| Yêu cầu | Kết quả |
+|---|---:|
+| GET /health | 200 |
+| GET /ready | 200 |
+| POST /ask không có API key | 401 |
+| POST /ask có API key hợp lệ | 200 |
 
-Nguồn đã push: [nhánh triển khai](https://github.com/Basrot/K5-L3B-DAY14-NguyenGiaNam-2A202603761-Deployment-Benchmark-Observability/tree/codex/part6-render).
-Xử lý tài khoản: [Render Billing](https://dashboard.render.com/billing).
+Report: `06-lab-complete/verification/railway-public.json`.
+Script kiểm tra: `06-lab-complete/tests/check_public.py`.
+API yêu cầu JSON, ví dụ `{"question":"Hello"}`, và header `X-API-Key`.
 
-## Kiến trúc và cấu hình
+## Nguồn code và trạng thái deploy
 
-Client → Render Docker Web Service → mock LLM; Redis lưu sliding window và chi phí.
-Blueprint: `06-lab-complete/render.yaml`, root directory `06-lab-complete`.
-Web Service và Key Value dùng Free plan, Singapore, kết nối qua private network.
+Chỉ deploy và push vào **fork của học viên**:
+[Basrot / repo bài làm](https://github.com/Basrot/K5-L3B-DAY14-NguyenGiaNam-2A202603761-Deployment-Benchmark-Observability/tree/codex/part6-render).
+
+- Nhánh: `codex/part6-render` (giữ tên nhánh từ giai đoạn chuẩn bị Render).
+- Commit code/cấu hình deploy: `0c73b13`.
+- Không push vào repo gốc `VinUni-AI20k/...`; không thay đổi nhánh `main`.
+- Workspace Railway: `Nam Nguyễn 's Projects`.
+- Project: `Lab14 Production Agent` (`4a362d25-2fc8-43ea-9e75-2a7b526494f7`).
+- Environment: `production` (`ac71a226-29db-42be-90b0-0fb0b2676b42`).
+- Agent: `day14-agent` (`45789e8f-5d14-42f7-8a47-b0f6fe89da74`).
+- Agent deployment: `eaf7bc66-30a6-4eeb-bdcf-08ac3ffdef5c`, **SUCCESS**.
+- Redis: `3a8b2f7b-f7f2-4a0b-8fc4-6508e610637e`, template chính thức `redis:8.2`,
+  volume `/data` **500 MB**, không bật TCP proxy public.
+- Cả agent và Redis chạy tại region `iad`, 1 instance mỗi service.
+- Dùng credit/gói sẵn có; không nâng lên gói trả phí hoặc thêm phương thức thanh toán.
+
+## Cấu hình Railway
+
+Client HTTPS → Railway Docker agent → mock LLM.
+Agent → Redis qua private network để chia sẻ rate limit và budget giữa các worker.
+
+| Thiết lập | Giá trị |
+|---|---|
+| Repository | Fork `Basrot/...`, nhánh `codex/part6-render` |
+| Root directory | `/06-lab-complete` |
+| Builder / Dockerfile | `DOCKERFILE` / `Dockerfile` |
+| Start command | Dùng CMD của Dockerfile, `exec uvicorn`, 2 workers |
+| Health check | `/health`, timeout 120 giây |
+| Draining | 9 giây |
+| Restart | ON_FAILURE, tối đa 3 lần |
+| Resource limit của agent | 1 vCPU, 500 MB RAM |
+| Sleep application | Bật |
+
+Railway hiện chuyển từ file legacy `railway.toml` sang service settings/IaC cho
+service mới. Vì vậy root, Dockerfile, health check và restart đã được đặt trực tiếp
+trên service; `railway.toml` vẫn được nộp theo hợp đồng lab.
+Tham khảo: [Railway IaC](https://docs.railway.com/infrastructure-as-code).
+
+Watch paths chỉ bao gồm code app, utils, Dockerfile, requirements, dockerignore và
+railway.toml của Part 6 để báo cáo/ảnh không gây build lại ứng dụng.
 
 | Biến | Nguồn / ý nghĩa |
 |---|---|
-| `AGENT_API_KEY` | Render sinh ngẫu nhiên; không lưu giá trị trong repo |
-| `REDIS_URL` | Blueprint lấy connectionString của Key Value |
+| `AGENT_API_KEY` | Khóa ngẫu nhiên riêng, đặt qua Railway Variables |
+| `REDIS_URL` | `${{Redis.REDIS_URL}}`, dùng kết nối private có mật khẩu |
 | `RATE_LIMIT_PER_MINUTE` | 10 request / 60 giây / API key |
 | `DAILY_BUDGET_USD` | 1.0 USD, reset theo ngày UTC |
 | `ENVIRONMENT` | production |
-| `PORT` | Render cấp; Docker mặc định 8000 |
+| `PORT` | 8000, domain target port 8000 |
 
-Health check: `/health`. `/ready` kiểm tra Redis riêng và trả 503 khi mất kết nối.
-Redis không truy cập được thì `/ask` trả 503; không chuyển sang state trong RAM.
+Bản local của API key nằm ở `06-lab-complete/.env.railway`, đã gitignore.
+Không chép giá trị vào báo cáo, ảnh chụp hoặc commit. Có thể xem/quản lý key trong
+Variables của service trên Railway.
 
-## Kiểm tra public sau khi deploy (Bash / WSL)
+## Tái kiểm tra public
 
-Đặt `BASE` bằng URL thực tế, nhập key từ trang Environment của Render vào terminal
-cá nhân. Không ghi key vào file báo cáo hoặc ảnh chụp.
+Từ `06-lab-complete/`, dùng file key local hoặc biến môi trường:
 
 ```bash
-read -rsp 'AGENT_API_KEY: ' AGENT_API_KEY; echo
-curl -sS -o /dev/null -w '%{http_code}\n' "$BASE/health"
-curl -sS -o /dev/null -w '%{http_code}\n' "$BASE/ready"
-curl -sS -o /dev/null -w '%{http_code}\n' -X POST "$BASE/ask" -H 'Content-Type: application/json' -d '{"question":"Hello"}'
-curl -sS -o /dev/null -w '%{http_code}\n' -X POST "$BASE/ask" -H 'Content-Type: application/json' -H "X-API-Key: $AGENT_API_KEY" -d '{"question":"Hello"}'
-unset AGENT_API_KEY
+python tests/check_public.py --url https://day14-agent-production-3dd6af85.up.railway.app --key-file .env.railway --out verification/railway-public.json
 ```
 
-Kỳ vọng lần lượt 200, 200, 401, 200. Đã xác minh chuỗi này trên Compose local;
-chưa xác minh cloud do lỗi Billing nêu trên. Cần lưu 3 ảnh deploy theo
-`SUBMISSION.md` sau khi service live.
+Script chỉ in mã HTTP, không in key. Trên máy khác, đặt `AGENT_API_KEY` trong
+môi trường cá nhân rồi bỏ tham số `--key-file`. Có thể cold start khi service ngủ.
 
-## Chạy local và kiểm tra lại
+## Bằng chứng local
 
-Trong `06-lab-complete/`, copy `.env.example` thành `.env` và đặt API key ngẫu nhiên.
-Chạy `docker compose -p k5-day14-final up -d --build --wait`.
-Sau đó kiểm tra `http://localhost:8000/health` và `/ready`.
+- Script chấm nguyên bản trên Linux: **PASS 12/12**, **43/43 checks passed**.
+- Integration tests với Redis thật: **14/14**.
+- Compose với `PORT=18014`: **200, 200, 401, 200**.
+- Image local: **274 MB**, dưới giới hạn 500 MB.
+- SIGTERM khi đang có request: request trả 200, process thoát exit code 0.
+- Docker stop: exit code 0, **0.7 giây** trong lần kiểm tra đã lưu.
 
-Linux/WSL: cài `requirements.txt`, chạy `python check_production_ready.py`.
-Windows có Docker Desktop và PowerShell 7: chạy
-`pwsh -NoProfile -File 06-lab-complete/tests/check-linux.ps1` từ gốc repo.
+File output ở `06-lab-complete/verification/`: `part6-readiness.txt`,
+`part6-integration.txt`, `part6-compose.json`.
+
+Linux/WSL: cài `requirements.txt` rồi chạy `python check_production_ready.py`.
+Windows có Docker Desktop và PowerShell 7: từ gốc repo chạy:
+
+```powershell
+pwsh -NoProfile -File 06-lab-complete/tests/check-linux.ps1
+```
+
 Harness dùng Linux và Redis tạm trên cổng 16380 (đổi bằng `-RedisPort`),
-chạy script chấm nguyên bản, không sửa hoặc bỏ qua tiêu chí nào.
+chạy script chấm nguyên bản, không bỏ qua tiêu chí.
 
-## Giới hạn demo
+## Render và Railway (Part 3)
 
-- Token và cost của mock được ước lượng từ độ dài văn bản, có `usage.estimated=true`.
-- Budget kiểm tra trước khi gọi LLM và cộng sau khi trả lời; các request đồng thời
-  đã được chấp nhận có thể làm tổng chi phí vượt ngưỡng trước khi lần gọi sau bị chặn.
-- Key Value Free không bền vững khi datastore restart; state vẫn được chia sẻ giữa
-  worker và tồn tại khi chỉ restart agent. Compose local bật AOF và named volume.
-- Free Web Service có thể ngủ khi không có traffic. Benchmark Part 7 chạy local
-  trên stack riêng theo đề.
+`render.yaml` mô tả cả Web Service và Redis, nối bằng `fromService`, sinh API key
+bằng `generateValue`. `railway.toml` legacy mô tả build/deploy của một service;
+Redis và reference variables được cấu hình ở cấp project/service trên Railway.
+Cả hai dùng cùng Dockerfile, PORT động và health check /health.
+
+Render đã được thử nhưng trả `billing_suspended`: workspace vượt bandwidth
+5.83/5 GB và không có thẻ. Blueprint `exs-dc3u5l6c6qcc73buhek0` planning thất bại,
+chưa tạo service chạy. Học viên sau đó chọn Railway; không tiếp tục deploy Render.
+Report lịch sử: `06-lab-complete/verification/render-planning.json`.
+
+## Giới hạn và phần bài nộp còn lại
+
+- Token/cost của mock là ước lượng độ dài văn bản, có `usage.estimated=true`.
+- Budget kiểm tra trước và cộng sau lời gọi LLM; request đồng thời đã được chấp nhận
+  có thể làm tổng vượt ngưỡng trước khi lần gọi sau bị chặn.
+- Redis có volume, nhưng chưa cấu hình HA/backup; đây là deployment lab.
+- Để nộp đủ CP6, cần 3 ảnh thật `screenshots/dashboard.png`, `running.png`,
+  `test.png`. Chưa đưa ảnh thay thế hoặc ảnh giả vào repo.
+- Part 1–5 và Part 7 vẫn cần thực hành/báo cáo riêng theo CHECKPOINTS.
