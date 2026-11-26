@@ -107,7 +107,7 @@ thái `up`. `promtool test rules` báo `SUCCESS` cho alert rules.
 
 - [x] [screenshots/grafana-dashboard.png](screenshots/grafana-dashboard.png) — dashboard Grafana khi có tải (Traffic 18,5 req/s), thấy Golden Signals.
 - [x] [screenshots/jaeger-slow-trace.png](screenshots/jaeger-slow-trace.png) — trace chậm 1,7 giây, thấy thời gian từng span.
-- [ ] `screenshots/jaeger-error-trace.png` — trace lỗi có event `exception`.
+- [x] [screenshots/jaeger-error-trace.png](screenshots/jaeger-error-trace.png) — trace lỗi có event `exception` và thông báo mock 503.
 - [ ] `screenshots/prometheus-alert-firing.png` — trang Alerts có hai alert cùng `firing`.
 
 ### 4.2 Thí nghiệm "phá hệ thống"
@@ -127,6 +127,8 @@ gốc ở `observability-results/experiment-a.json` đến `experiment-d.json`;
 có tải Locust 30 users. C dùng mock model, không gọi API trả phí. Khi mới đổi
 sang v1, alert cost của C còn firing do cửa sổ 5 phút; đến 09:44:32 UTC nó
 biến mất và danh sách alert rỗng dù v1 vẫn phục vụ 30 users.
+`observability-results/alerts-ab.json` lưu lần chạy bổ sung với
+`AgentHighErrorRate` và `AgentHighLatencyP95` cùng ở trạng thái `firing`.
 
 **Thí nghiệm E không làm alert nào firing. Bạn sẽ phát hiện loại sự cố này trong production bằng cách nào?**
 
