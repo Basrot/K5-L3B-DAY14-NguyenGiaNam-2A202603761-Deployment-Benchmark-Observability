@@ -131,4 +131,5 @@ Report lịch sử: `06-lab-complete/verification/render-planning.json`.
 - Redis có volume, nhưng chưa cấu hình HA/backup; đây là deployment lab.
 - Để nộp đủ CP6, cần 3 ảnh thật `screenshots/dashboard.png`, `running.png`,
   `test.png`. Chưa đưa ảnh thay thế hoặc ảnh giả vào repo.
-- Part 1–5 và Part 7 vẫn cần thực hành/báo cáo riêng theo CHECKPOINTS.
+- Part 1–5 đã có kết quả và giải thích trong `MISSION_ANSWERS.md`;
+  Part 7 vẫn cần thực hành/báo cáo riêng theo CHECKPOINTS.
