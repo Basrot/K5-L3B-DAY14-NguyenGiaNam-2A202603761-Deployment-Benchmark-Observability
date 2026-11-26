@@ -105,7 +105,7 @@ thái `up`. `promtool test rules` báo `SUCCESS` cho alert rules.
 
 ### 4.1 Screenshot
 
-- [ ] `screenshots/grafana-dashboard.png` — dashboard Grafana khi có tải, thấy Golden Signals.
+- [x] [screenshots/grafana-dashboard.png](screenshots/grafana-dashboard.png) — dashboard Grafana khi có tải (Traffic 18,5 req/s), thấy Golden Signals.
 - [ ] `screenshots/jaeger-slow-trace.png` — trace chậm, thấy thời gian từng span.
 - [ ] `screenshots/jaeger-error-trace.png` — trace lỗi có event `exception`.
 - [ ] `screenshots/prometheus-alert-firing.png` — trang Alerts có hai alert cùng `firing`.
