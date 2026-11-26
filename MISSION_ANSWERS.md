@@ -178,6 +178,15 @@ POST /ask, Bearer token hợp lệ   -> 200
 20 POST /ask tiếp theo           -> 9 lần 200, 11 lần 429
 ```
 
+Kiểm tra lại bằng HTTP client trong Linux container (chỉ chép status và header,
+không chép JWT); sau một request hợp lệ và 10 request tiếp theo:
+
+```text
+không token:    HTTP/1.1 401, WWW-Authenticate: Bearer
+token hợp lệ:  HTTP/1.1 200, Content-Type: application/json
+vượt giới hạn: HTTP/1.1 429, Retry-After: 59
+```
+
 Request hợp lệ đầu tiên đã dùng 1/10 suất của `student`, nên trong vòng lặp
 20 lần chỉ 9 lần tiếp theo nhận 200. `rate_limiter.py` giữ deque timestamp
 trong cửa sổ trượt 60 giây: user 10 request/phút, admin 100 request/phút.
@@ -295,7 +304,7 @@ Các điểm cần giải thích:
 | 2026-11-26 | Tiếp tục Part 7 theo thứ tự rồi làm Part 8 | Codex chạy load test ở 4 mức concurrency và 3 mức slow rate, eval v1/v2 và sửa 2 mục KB, thêm quality gate CI; báo cáo số thật ở `BENCHMARK_REPORT.md` | Codex xác nhận 11 JSON hợp lệ, eval v2 sau sửa 23/23 và gate v1 regression thất bại; lúc đầu hệ thống duyệt Docker báo hết credits, sau đó chạy được khi thử lại. Học viên cần tự kiểm tra và giải thích |
 | 2026-11-26 | Tiếp tục đo Part 8 sau khi xác minh mức sử dụng tài khoản | Codex dựng lại stack, chạy promtool, đo Locust 1/3 replica, đối chiếu log/trace và chạy fault injection A–E | Docker image đã chạy healthy; alert A–D firing sau 87,8/148,1/143,6/40,4 giây; eval production v1 đúng 1/23, gate fail và không có alert chất lượng. Locust đã dừng, agent trả về v2; 7 ảnh minh chứng đã được thêm. Workflow quality gate chưa chạy trên GitHub |
 | 2026-11-26 | Rà soát toàn bộ README, SUBMISSION, CHECKPOINTS và RUBRIC trước khi nộp | Codex đối chiếu file bắt buộc, liên kết, số liệu JSON/CSV, ảnh, lịch sử Git và chạy lại checker cùng phép thử Railway; sửa mô tả CP6 đã cũ | Checker PASS 12/12 (43/43), integration 14/14, public 4/4; 19 file bắt buộc hiện diện và số liệu báo cáo khớp. Tại thời điểm rà soát, `main` còn bản cũ; chưa ghi nhận việc nộp LMS hoặc chạy workflow trên GitHub |
-| 2026-11-26 | Đưa toàn bộ bài lên `main` của fork rồi kiểm tra điều kiện nộp và bonus | Codex fast-forward `main` lên cùng commit với nhánh bài làm, đối chiếu `SUBMISSION.md`, `CHECKPOINTS.md`, `RUBRIC.md`, `RULES.md` và ghi lại kết quả | Repo `Basrot/...` Public, `main` có hồ sơ; `RUBRIC.md` K5 quy định không có bonus. Học viên cần tự mở link, giải thích code/số đo khi Lab Coach hỏi và nộp một link repo trên LMS |
+| 2026-11-26 | Đưa toàn bộ bài lên `main` của fork rồi kiểm tra điều kiện nộp và bonus | Codex fast-forward `main` lên cùng commit với nhánh bài làm, đối chiếu `SUBMISSION.md`, `CHECKPOINTS.md`, `RUBRIC.md`, `RULES.md` và kiểm lại Part 4 trong container | Repo `Basrot/...` Public, `main` có hồ sơ; Part 4 trả 401/200/429 với header xác thực và `Retry-After`; `RUBRIC.md` K5 quy định không có bonus. Học viên cần tự mở link, giải thích code/số đo khi Lab Coach hỏi và nộp một link repo trên LMS |
 
 Không thay đổi `check_production_ready.py` hoặc golden dataset; số đo trong phần
 này lấy từ file output thực tế, không lấy từ số ví dụ trong tài liệu lab.
