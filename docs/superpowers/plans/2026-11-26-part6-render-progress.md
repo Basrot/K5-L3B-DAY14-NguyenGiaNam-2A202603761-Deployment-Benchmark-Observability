@@ -28,3 +28,11 @@
 - Render planningOutcome=failed, sync=null: billing_suspended for both services.
   No approval attempted and no new running cloud services. User was notified and
   asked to resolve workspace Billing before replanning. Never approve failed plan.
+- 2026-11-26: user selected Railway after confirming their account can deploy
+  without a card. Continue the same task and branch; do not retry Render.
+- Railway plan: keep the verified agent code and Dockerfile; complete railway.toml
+  for the lab contract; provision private Redis and a Docker agent service from
+  /06-lab-complete, configure env vars, create a public domain, and verify HTTP
+  200/200/401/200. Preserve secrets outside Git and record actual cloud evidence.
+- Current Railway docs deprecate legacy railway.toml config; service settings/IaC
+  must also explicitly set Docker root, health check and restart configuration.
