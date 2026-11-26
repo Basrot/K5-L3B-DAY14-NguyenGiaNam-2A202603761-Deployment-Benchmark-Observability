@@ -9,7 +9,7 @@
 - [API docs](https://day14-agent-production-3dd6af85.up.railway.app/docs)
 - [Railway project](https://railway.com/project/4a362d25-2fc8-43ea-9e75-2a7b526494f7)
 
-Kiểm tra public ngày **2026-11-26 lúc 14:54 GMT+7** bằng HTTP thật:
+Kiểm tra public ngày **2026-11-26 lúc 17:23 GMT+7** bằng HTTP thật:
 
 | Yêu cầu | Kết quả |
 |---|---:|
@@ -96,7 +96,7 @@ môi trường cá nhân rồi bỏ tham số `--key-file`. Có thể cold start
 - Compose với `PORT=18014`: **200, 200, 401, 200**.
 - Image local: **274 MB**, dưới giới hạn 500 MB.
 - SIGTERM khi đang có request: request trả 200, process thoát exit code 0.
-- Docker stop: exit code 0, **0.7 giây** trong lần kiểm tra đã lưu.
+- Docker stop: exit code 0, **0,8 giây** trong lần kiểm tra đã lưu.
 
 File output ở `06-lab-complete/verification/`: `part6-readiness.txt`,
 `part6-integration.txt`, `part6-compose.json`.

@@ -1,37 +1,37 @@
 test_daily_cost_accumulates_atomically (test_agent.AgentTests.test_daily_cost_accumulates_atomically) ... ok
-test_empty_input_is_rejected (test_agent.AgentTests.test_empty_input_is_rejected) ... {"ts": "2026-11-26T07:48:54.794540+00:00", "level": "INFO", "event": "request", "request_id": "58dfcc59d3107baff748cf03", "method": "POST", "path": "/ask", "status": 422, "ms": 2.21}
+test_empty_input_is_rejected (test_agent.AgentTests.test_empty_input_is_rejected) ... {"ts": "2026-11-26T10:22:07.372618+00:00", "level": "INFO", "event": "request", "request_id": "61836ff309844d4d3b23d53b", "method": "POST", "path": "/ask", "status": 422, "ms": 1.91}
 ok
-test_health_and_readiness (test_agent.AgentTests.test_health_and_readiness) ... {"ts": "2026-11-26T07:48:54.800953+00:00", "level": "INFO", "event": "request", "request_id": "a43fa441a948e849c09b3775", "method": "GET", "path": "/health", "status": 200, "ms": 1.18}
-{"ts": "2026-11-26T07:48:54.805570+00:00", "level": "INFO", "event": "request", "request_id": "ec0e805485ef5a6dbe0764d7", "method": "GET", "path": "/ready", "status": 200, "ms": 1.42}
+test_health_and_readiness (test_agent.AgentTests.test_health_and_readiness) ... {"ts": "2026-11-26T10:22:07.379148+00:00", "level": "INFO", "event": "request", "request_id": "db909980db6ebe4a8d17bf14", "method": "GET", "path": "/health", "status": 200, "ms": 1.16}
+{"ts": "2026-11-26T10:22:07.383212+00:00", "level": "INFO", "event": "request", "request_id": "c88812f2656ba8a36dd190e9", "method": "GET", "path": "/ready", "status": 200, "ms": 1.17}
 ok
-test_missing_wrong_and_empty_keys_are_rejected (test_agent.AgentTests.test_missing_wrong_and_empty_keys_are_rejected) ... {"ts": "2026-11-26T07:48:54.812332+00:00", "level": "INFO", "event": "request", "request_id": "8da94c59ebf4eb2481b7f62e", "method": "POST", "path": "/ask", "status": 401, "ms": 1.88}
-{"ts": "2026-11-26T07:48:54.818371+00:00", "level": "INFO", "event": "request", "request_id": "4f35aaec9be8ee3098551eb1", "method": "POST", "path": "/ask", "status": 401, "ms": 2.32}
-{"ts": "2026-11-26T07:48:54.823093+00:00", "level": "INFO", "event": "request", "request_id": "9e3cda1e6148a0880e7981bb", "method": "POST", "path": "/ask", "status": 401, "ms": 1.51}
+test_missing_wrong_and_empty_keys_are_rejected (test_agent.AgentTests.test_missing_wrong_and_empty_keys_are_rejected) ... {"ts": "2026-11-26T10:22:07.389282+00:00", "level": "INFO", "event": "request", "request_id": "5924bf4faf1b6b86b45a6f9b", "method": "POST", "path": "/ask", "status": 401, "ms": 1.52}
+{"ts": "2026-11-26T10:22:07.393871+00:00", "level": "INFO", "event": "request", "request_id": "f904f494ad577dcdc13f8119", "method": "POST", "path": "/ask", "status": 401, "ms": 1.69}
+{"ts": "2026-11-26T10:22:07.397803+00:00", "level": "INFO", "event": "request", "request_id": "f04c76b063ac5afc350c20d4", "method": "POST", "path": "/ask", "status": 401, "ms": 1.41}
 ok
 test_rate_limit_keeps_different_keys_separate (test_agent.AgentTests.test_rate_limit_keeps_different_keys_separate) ... ok
 test_rate_window_expires (test_agent.AgentTests.test_rate_window_expires) ... ok
-test_redis_outage_keeps_liveness_but_blocks_requests (test_agent.AgentTests.test_redis_outage_keeps_liveness_but_blocks_requests) ... {"ts": "2026-11-26T07:48:54.835419+00:00", "level": "INFO", "event": "request", "request_id": "17214e1522c0bb7851a4f10d", "method": "GET", "path": "/health", "status": 200, "ms": 1.08}
-{"ts": "2026-11-26T07:48:54.839863+00:00", "level": "INFO", "event": "request", "request_id": "709df159beb48f5f2bdc9361", "method": "GET", "path": "/ready", "status": 503, "ms": 1.31}
-{"ts": "2026-11-26T07:48:54.845038+00:00", "level": "WARNING", "event": "redis_unavailable", "error_type": "ConnectionError"}
-{"ts": "2026-11-26T07:48:54.845199+00:00", "level": "INFO", "event": "request", "request_id": "391429aa3389639932f0cd01", "method": "POST", "path": "/ask", "status": 503, "ms": 1.93}
+test_redis_outage_keeps_liveness_but_blocks_requests (test_agent.AgentTests.test_redis_outage_keeps_liveness_but_blocks_requests) ... {"ts": "2026-11-26T10:22:07.410029+00:00", "level": "INFO", "event": "request", "request_id": "e89b82d32bffa6c81b700ffc", "method": "GET", "path": "/health", "status": 200, "ms": 1.25}
+{"ts": "2026-11-26T10:22:07.414006+00:00", "level": "INFO", "event": "request", "request_id": "4d64e9eab766e96773623f54", "method": "GET", "path": "/ready", "status": 503, "ms": 1.05}
+{"ts": "2026-11-26T10:22:07.418359+00:00", "level": "WARNING", "event": "redis_unavailable", "error_type": "ConnectionError"}
+{"ts": "2026-11-26T10:22:07.418535+00:00", "level": "INFO", "event": "request", "request_id": "f6fc26669f70ea1355febe11", "method": "POST", "path": "/ask", "status": 503, "ms": 1.78}
 ok
-test_request_logs_are_json_without_credentials_or_question (test_agent.AgentTests.test_request_logs_are_json_without_credentials_or_question) ... {"ts": "2026-11-26T07:48:54.969201+00:00", "level": "INFO", "event": "request", "request_id": "49121f7b64520144993eca0d", "method": "POST", "path": "/ask", "status": 200, "ms": 119.6}
+test_request_logs_are_json_without_credentials_or_question (test_agent.AgentTests.test_request_logs_are_json_without_credentials_or_question) ... {"ts": "2026-11-26T10:22:07.533825+00:00", "level": "INFO", "event": "request", "request_id": "21c64a6d7346fba91fa7691f", "method": "POST", "path": "/ask", "status": 200, "ms": 110.26}
 ok
 test_sliding_window_limits_exactly_five_concurrent_calls (test_agent.AgentTests.test_sliding_window_limits_exactly_five_concurrent_calls) ... ok
-test_tiny_budget_blocks_subsequent_request (test_agent.AgentTests.test_tiny_budget_blocks_subsequent_request) ... {"ts": "2026-11-26T07:48:55.116627+00:00", "level": "INFO", "event": "request", "request_id": "b7a4061aa94e1ced59b3e566", "method": "POST", "path": "/ask", "status": 200, "ms": 124.09}
-{"ts": "2026-11-26T07:48:55.122218+00:00", "level": "INFO", "event": "request", "request_id": "705d5d23c8e580ef77671743", "method": "POST", "path": "/ask", "status": 402, "ms": 2.57}
+test_tiny_budget_blocks_subsequent_request (test_agent.AgentTests.test_tiny_budget_blocks_subsequent_request) ... {"ts": "2026-11-26T10:22:07.687631+00:00", "level": "INFO", "event": "request", "request_id": "80010ff124958b625d9dbb73", "method": "POST", "path": "/ask", "status": 200, "ms": 130.15}
+{"ts": "2026-11-26T10:22:07.694222+00:00", "level": "INFO", "event": "request", "request_id": "699ab803f9063aefd117fb86", "method": "POST", "path": "/ask", "status": 402, "ms": 2.69}
 ok
-test_upstream_failure_has_no_traceback (test_agent.AgentTests.test_upstream_failure_has_no_traceback) ... {"ts": "2026-11-26T07:48:55.129976+00:00", "level": "ERROR", "event": "llm_error", "error_type": "RuntimeError"}
-{"ts": "2026-11-26T07:48:55.130414+00:00", "level": "INFO", "event": "request", "request_id": "5b23e89eed289bd68640f540", "method": "POST", "path": "/ask", "status": 502, "ms": 2.36}
+test_upstream_failure_has_no_traceback (test_agent.AgentTests.test_upstream_failure_has_no_traceback) ... {"ts": "2026-11-26T10:22:07.704656+00:00", "level": "ERROR", "event": "llm_error", "error_type": "RuntimeError"}
+{"ts": "2026-11-26T10:22:07.705185+00:00", "level": "INFO", "event": "request", "request_id": "42c549d56491772442c83968", "method": "POST", "path": "/ask", "status": 502, "ms": 3.32}
 ok
-test_valid_request_and_estimated_usage (test_agent.AgentTests.test_valid_request_and_estimated_usage) ... {"ts": "2026-11-26T07:48:55.272060+00:00", "level": "INFO", "event": "request", "request_id": "e1411affa26d2402918d3d6c", "method": "POST", "path": "/ask", "status": 200, "ms": 136.05}
+test_valid_request_and_estimated_usage (test_agent.AgentTests.test_valid_request_and_estimated_usage) ... {"ts": "2026-11-26T10:22:07.857840+00:00", "level": "INFO", "event": "request", "request_id": "9bd4f8b61be5f6245753cfa4", "method": "POST", "path": "/ask", "status": 200, "ms": 145.89}
 ok
-test_whitespace_input_is_rejected (test_agent.AgentTests.test_whitespace_input_is_rejected) ... {"ts": "2026-11-26T07:48:55.280672+00:00", "level": "INFO", "event": "request", "request_id": "050646842ccda4fe346b56b3", "method": "POST", "path": "/ask", "status": 422, "ms": 1.94}
+test_whitespace_input_is_rejected (test_agent.AgentTests.test_whitespace_input_is_rejected) ... {"ts": "2026-11-26T10:22:07.867918+00:00", "level": "INFO", "event": "request", "request_id": "26c25e218b12447a1a5454e7", "method": "POST", "path": "/ask", "status": 422, "ms": 2.62}
 ok
-test_zero_budget_blocks_first_request (test_agent.AgentTests.test_zero_budget_blocks_first_request) ... {"ts": "2026-11-26T07:48:55.288278+00:00", "level": "INFO", "event": "request", "request_id": "2bc28acd43f030586ce266f7", "method": "POST", "path": "/ask", "status": 402, "ms": 2.52}
+test_zero_budget_blocks_first_request (test_agent.AgentTests.test_zero_budget_blocks_first_request) ... {"ts": "2026-11-26T10:22:07.877382+00:00", "level": "INFO", "event": "request", "request_id": "afe2d8b79ebb31e633f72d07", "method": "POST", "path": "/ask", "status": 402, "ms": 2.6}
 ok
 
 ----------------------------------------------------------------------
-Ran 14 tests in 0.536s
+Ran 14 tests in 0.560s
 
 OK

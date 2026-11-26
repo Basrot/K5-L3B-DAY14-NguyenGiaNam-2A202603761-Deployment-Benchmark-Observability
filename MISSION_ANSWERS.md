@@ -262,16 +262,17 @@ PASS 12/12 — PRODUCTION READY!
 ```
 
 Output đầy đủ: `06-lab-complete/verification/part6-readiness.txt`.
-Image 274 MB; Docker stop 0.7 giây, exit code 0. Integration tests: 14/14.
+Image 274 MB; Docker stop 0,8 giây, exit code 0. Integration tests: 14/14.
 `Public URL ready` trong script là kiểm tra cấu hình deploy; URL cloud đã được
 kiểm tra riêng theo `DEPLOYMENT.md`: 200/200/401/200, report `railway-public.json`.
 
 Render planning thất bại với `billing_suspended`. Học viên đã chuyển sang Railway:
 agent và Redis đều chạy, URL public là
 https://day14-agent-production-3dd6af85.up.railway.app . Kiểm tra thực tế ngày
-2026-11-26 lúc 14:54 GMT+7: `/health` 200, `/ready` 200, `/ask` không key 401,
+2026-11-26 lúc 17:23 GMT+7: `/health` 200, `/ready` 200, `/ask` không key 401,
 có key 200. Nguồn deploy chỉ ở fork `Basrot/...`, nhánh `codex/part6-render`.
-Ảnh dashboard/running/test vẫn cần bổ sung để đủ hồ sơ nộp CP6.
+Ba ảnh CP6 đã lưu tại `screenshots/dashboard.png`, `screenshots/running.png`
+và `screenshots/test.png`; liên kết và kết quả kiểm tra ở `DEPLOYMENT.md`.
 
 Các điểm cần giải thích:
 
@@ -292,7 +293,7 @@ Các điểm cần giải thích:
 | 2026-11-26 | Chuyển qua Railway, chỉ push fork cá nhân | Codex bổ sung railway.toml, tạo project agent + Redis private có volume, đặt biến môi trường và deploy nhánh trong fork; không thay đổi repo chương trình | Codex chạy lại checker đạt 43/43, kiểm tra public 200/200/401/200 và lưu report không chứa key; học viên cần tự kiểm tra lại và giải thích |
 | 2026-11-26 | Hoàn thiện Part 1–5 theo thứ tự đề | Codex đọc code mẫu, chạy Part 1, build/đo Part 2, kiểm lại Railway/Cloud Run Part 3, chạy auth/JWT/rate limit Part 4, viết guard tháng Redis và thử scaling Part 5 | Codex đo image 1667,8/239,8 MB, HTTP và session thực tế, chạy 4 test Redis, phát hiện rồi sửa timeout Nginx; học viên cần đọc lại, tự chạy và giải thích các số liệu |
 | 2026-11-26 | Tiếp tục Part 7 theo thứ tự rồi làm Part 8 | Codex chạy load test ở 4 mức concurrency và 3 mức slow rate, eval v1/v2 và sửa 2 mục KB, thêm quality gate CI; báo cáo số thật ở `BENCHMARK_REPORT.md` | Codex xác nhận 11 JSON hợp lệ, eval v2 sau sửa 23/23 và gate v1 regression thất bại; lúc đầu hệ thống duyệt Docker báo hết credits, sau đó chạy được khi thử lại. Học viên cần tự kiểm tra và giải thích |
-| 2026-11-26 | Tiếp tục đo Part 8 sau khi xác minh mức sử dụng tài khoản | Codex dựng lại stack, chạy promtool, đo Locust 1/3 replica, đối chiếu log/trace và chạy fault injection A–E | Docker image đã chạy healthy; alert A–D firing sau 87,8/148,1/143,6/40,4 giây; eval production v1 đúng 1/23, gate fail và không có alert chất lượng. Locust đã dừng, agent trả về v2. Ảnh thật và chạy CI trên GitHub còn cần xác nhận |
+| 2026-11-26 | Tiếp tục đo Part 8 sau khi xác minh mức sử dụng tài khoản | Codex dựng lại stack, chạy promtool, đo Locust 1/3 replica, đối chiếu log/trace và chạy fault injection A–E | Docker image đã chạy healthy; alert A–D firing sau 87,8/148,1/143,6/40,4 giây; eval production v1 đúng 1/23, gate fail và không có alert chất lượng. Locust đã dừng, agent trả về v2; 7 ảnh minh chứng đã được thêm. Workflow quality gate chưa chạy trên GitHub |
 
 Không thay đổi `check_production_ready.py` hoặc golden dataset; số đo trong phần
 này lấy từ file output thực tế, không lấy từ số ví dụ trong tài liệu lab.
