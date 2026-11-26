@@ -1,0 +1,29 @@
+{
+  "port": 18014,
+  "checks": [
+    {
+      "method": "GET",
+      "path": "/health",
+      "with_key": false,
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/ready",
+      "with_key": false,
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/ask",
+      "with_key": false,
+      "status": 401
+    },
+    {
+      "method": "POST",
+      "path": "/ask",
+      "with_key": true,
+      "status": 200
+    }
+  ]
+}
