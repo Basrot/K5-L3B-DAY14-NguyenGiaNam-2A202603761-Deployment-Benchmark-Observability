@@ -105,10 +105,10 @@ thái `up`. `promtool test rules` báo `SUCCESS` cho alert rules.
 
 ### 4.1 Screenshot
 
-- [ ] Dashboard Grafana khi đang có tải (thấy rõ Golden Signals)
-- [ ] Một trace chậm trong Jaeger (thấy span nào chiếm thời gian)
-- [ ] Một trace lỗi trong Jaeger (có event `exception`)
-- [ ] Trang Alerts của Prometheus với ít nhất 1 alert đang **firing**
+- [ ] `screenshots/grafana-dashboard.png` — dashboard Grafana khi có tải, thấy Golden Signals.
+- [ ] `screenshots/jaeger-slow-trace.png` — trace chậm, thấy thời gian từng span.
+- [ ] `screenshots/jaeger-error-trace.png` — trace lỗi có event `exception`.
+- [ ] `screenshots/prometheus-alert-firing.png` — trang Alerts có hai alert cùng `firing`.
 
 ### 4.2 Thí nghiệm "phá hệ thống"
 
