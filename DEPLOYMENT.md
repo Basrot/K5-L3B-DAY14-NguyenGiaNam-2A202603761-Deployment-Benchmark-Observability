@@ -14,7 +14,21 @@ Part 6 đã được kiểm tra local ngày 2026-11-26:
 
 Bằng chứng: `06-lab-complete/verification/part6-readiness.txt` và
 `06-lab-complete/verification/part6-integration.txt`.
-URL public và kết quả kiểm tra cloud sẽ được bổ sung sau khi deploy thực tế.
+**Cloud đang bị chặn:** Render trả `billing_suspended` khi lập kế hoạch Blueprint
+ngày 2026-11-26 cho cả Web Service và Key Value. Chưa có URL public, service mới
+chưa được tạo/chạy và chưa có kết quả HTTP cloud. Cần chủ tài khoản xử lý trạng
+thái Billing của workspace trước khi tiếp tục.
+
+- Workspace đã được học viên xác nhận: `My Workspace`.
+- Nhánh đã push: `codex/part6-render`.
+- Commit triển khai: `9049617`.
+- Blueprint: `exs-dc3u5l6c6qcc73buhek0` (`Day14 Production Agent`).
+- Planning outcome: `failed`; sync: `null`; không approve một plan thất bại.
+- Auto-sync đang tắt; sau khi Billing được xử lý, lập plan lại và duyệt thay đổi
+  tạo 2 dịch vụ Free trước khi apply.
+
+Nguồn đã push: [nhánh triển khai](https://github.com/Basrot/K5-L3B-DAY14-NguyenGiaNam-2A202603761-Deployment-Benchmark-Observability/tree/codex/part6-render).
+Xử lý tài khoản: [Render Billing](https://dashboard.render.com/billing).
 
 ## Kiến trúc và cấu hình
 
@@ -48,8 +62,9 @@ curl -sS -o /dev/null -w '%{http_code}\n' -X POST "$BASE/ask" -H 'Content-Type: 
 unset AGENT_API_KEY
 ```
 
-Kỳ vọng lần lượt 200, 200, 401, 200. Các giá trị này là kỳ vọng cho tới khi có
-report cloud thật. Cần lưu 3 ảnh deploy theo `SUBMISSION.md` sau khi service live.
+Kỳ vọng lần lượt 200, 200, 401, 200. Đã xác minh chuỗi này trên Compose local;
+chưa xác minh cloud do lỗi Billing nêu trên. Cần lưu 3 ảnh deploy theo
+`SUBMISSION.md` sau khi service live.
 
 ## Chạy local và kiểm tra lại
 

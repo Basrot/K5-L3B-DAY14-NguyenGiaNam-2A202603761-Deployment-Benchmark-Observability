@@ -1,0 +1,17 @@
+{
+  "checked_date": "2026-11-26",
+  "workspace_name": "My Workspace",
+  "blueprint_id": "exs-dc3u5l6c6qcc73buhek0",
+  "branch": "codex/part6-render",
+  "blueprint_path": "06-lab-complete/render.yaml",
+  "auto_sync": false,
+  "planning_outcome": "failed",
+  "sync": null,
+  "errors": [
+    {"path": "services[1]", "line": 26, "message": "billing_suspended"},
+    {"path": "services[0]", "line": 3, "message": "billing_suspended"},
+    {"message": "billing_suspended"}
+  ],
+  "public_url": null,
+  "cloud_http_checks": "not run; account Billing must be resolved first"
+}

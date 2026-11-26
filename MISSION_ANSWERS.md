@@ -31,6 +31,10 @@ Image 274 MB; Docker stop 0.7 giây, exit code 0. Integration tests: 14/14.
 `Public URL ready` trong script là kiểm tra cấu hình deploy; URL cloud cần được
 kiểm tra riêng theo `DEPLOYMENT.md` sau khi dịch vụ live.
 
+Deploy Render đã được thử qua kết nối Render: tạo Blueprint thành công nhưng
+planning thất bại với `billing_suspended`. Chưa tính hoàn thành nhóm Deployment
+của Part 6 và phần URL public của Part 3.
+
 Các điểm cần giải thích:
 
 - `/health` chỉ phản ánh process sống; `/ready` kiểm tra Redis để quyết định nhận tải.
