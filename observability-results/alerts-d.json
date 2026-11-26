@@ -1,0 +1,35 @@
+{
+  "status": "success",
+  "data": {
+    "alerts": [
+      {
+        "labels": {
+          "alertname": "LLMCostBurnRateHigh",
+          "severity": "warning"
+        },
+        "annotations": {
+          "description": "Tốc độ chi tiêu hiện tại: $19.34/giờ",
+          "summary": "Chi phí LLM đang vượt $2/giờ"
+        },
+        "state": "firing",
+        "activeAt": "2026-11-26T09:36:57.571501534Z",
+        "value": "1.93401380147636e+01"
+      },
+      {
+        "labels": {
+          "alertname": "AgentInstanceDown",
+          "instance": "172.19.0.4:8000",
+          "job": "agent",
+          "severity": "critical"
+        },
+        "annotations": {
+          "description": "Prometheus không gọi được /metrics của 172.19.0.4:8000 trong 30s",
+          "summary": "Instance agent 172.19.0.4:8000 không scrape được"
+        },
+        "state": "firing",
+        "activeAt": "2026-11-26T09:39:52.401817116Z",
+        "value": "0e+00"
+      }
+    ]
+  }
+}

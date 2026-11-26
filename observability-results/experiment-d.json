@@ -1,0 +1,9 @@
+{
+  "experiment": "D",
+  "changedAt": "2026-11-26T09:39:42.2836750Z",
+  "alert": "AgentInstanceDown",
+  "instance": "172.19.0.4:8000",
+  "activeAt": "2026-11-26T09:39:52.401817116Z",
+  "firingObservedAt": "2026-11-26T09:40:22.6357653Z",
+  "elapsedSeconds": 40.4
+}

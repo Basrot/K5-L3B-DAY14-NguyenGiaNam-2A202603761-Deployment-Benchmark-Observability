@@ -1,0 +1,8 @@
+{
+  "experiment": "A",
+  "changedAt": "2026-11-26T09:31:58.3368894Z",
+  "alert": "AgentHighErrorRate",
+  "activeAt": "2026-11-26T09:32:22.401817116Z",
+  "firingObservedAt": "2026-11-26T09:33:26.1507112Z",
+  "elapsedSeconds": 87.8
+}

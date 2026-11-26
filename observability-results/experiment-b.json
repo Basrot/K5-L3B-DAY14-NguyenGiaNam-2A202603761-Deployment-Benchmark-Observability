@@ -1,0 +1,8 @@
+{
+  "experiment": "B",
+  "changedAt": "2026-11-26T09:33:41.3181840Z",
+  "alert": "AgentHighLatencyP95",
+  "activeAt": "2026-11-26T09:34:07.401817116Z",
+  "firingObservedAt": "2026-11-26T09:36:09.4179895Z",
+  "elapsedSeconds": 148.1
+}

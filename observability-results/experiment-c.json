@@ -1,0 +1,8 @@
+{
+  "experiment": "C",
+  "changedAt": "2026-11-26T09:36:37.3690788Z",
+  "alert": "LLMCostBurnRateHigh",
+  "activeAt": "2026-11-26T09:36:57.571501534Z",
+  "firingObservedAt": "2026-11-26T09:39:00.9527252Z",
+  "elapsedSeconds": 143.6
+}

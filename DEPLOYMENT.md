@@ -131,5 +131,11 @@ Report lịch sử: `06-lab-complete/verification/render-planning.json`.
 - Redis có volume, nhưng chưa cấu hình HA/backup; đây là deployment lab.
 - Để nộp đủ CP6, cần 3 ảnh thật `screenshots/dashboard.png`, `running.png`,
   `test.png`. Chưa đưa ảnh thay thế hoặc ảnh giả vào repo.
-- Part 1–5 đã có kết quả và giải thích trong `MISSION_ANSWERS.md`;
-  Part 7 vẫn cần thực hành/báo cáo riêng theo CHECKPOINTS.
+- Part 1–5 đã có kết quả và giải thích trong `MISSION_ANSWERS.md`.
+- Part 7 đã có load test, eval, báo cáo JSON và `BENCHMARK_REPORT.md` mục 1–3;
+  quality gate GitHub Actions được thêm nhưng chưa chạy trên GitHub.
+- Part 8: image sau sửa `PYTHONUSERBASE` đã build và chạy healthy; Prometheus
+  alert rules qua `promtool`; Locust 100 users/2 phút đã đo 1 và 3 replica,
+  CSV ở `benchmark-results/`. Trace debug và cả 5 thí nghiệm alert/quality
+  có bằng chứng ở `observability-results/`. Ảnh Grafana, Jaeger, Prometheus
+  còn cần chụp thật để đủ hồ sơ nộp.
