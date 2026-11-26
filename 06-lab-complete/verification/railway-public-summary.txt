@@ -1,0 +1,5 @@
+GET /health without key: 200 (expected 200)
+GET /ready without key: 200 (expected 200)
+POST /ask without key: 401 (expected 401)
+POST /ask with key: 200 (expected 200)
+PASS 4/4
