@@ -108,7 +108,7 @@ thái `up`. `promtool test rules` báo `SUCCESS` cho alert rules.
 - [x] [screenshots/grafana-dashboard.png](screenshots/grafana-dashboard.png) — dashboard Grafana khi có tải (Traffic 18,5 req/s), thấy Golden Signals.
 - [x] [screenshots/jaeger-slow-trace.png](screenshots/jaeger-slow-trace.png) — trace chậm 1,7 giây, thấy thời gian từng span.
 - [x] [screenshots/jaeger-error-trace.png](screenshots/jaeger-error-trace.png) — trace lỗi có event `exception` và thông báo mock 503.
-- [ ] `screenshots/prometheus-alert-firing.png` — trang Alerts có hai alert cùng `firing`.
+- [x] [screenshots/prometheus-alert-firing.png](screenshots/prometheus-alert-firing.png) — trang Alerts có `AgentHighErrorRate` và `AgentHighLatencyP95` cùng `firing`.
 
 ### 4.2 Thí nghiệm "phá hệ thống"
 

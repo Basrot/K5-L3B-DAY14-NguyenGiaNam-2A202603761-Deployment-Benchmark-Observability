@@ -145,5 +145,5 @@ Report lịch sử: `06-lab-complete/verification/render-planning.json`.
 - Part 8: image sau sửa `PYTHONUSERBASE` đã build và chạy healthy; Prometheus
   alert rules qua `promtool`; Locust 100 users/2 phút đã đo 1 và 3 replica,
   CSV ở `benchmark-results/`. Trace debug và cả 5 thí nghiệm alert/quality
-  có bằng chứng ở `observability-results/`. Ảnh Grafana, Jaeger, Prometheus
-  còn cần chụp thật để đủ hồ sơ nộp.
+  có bằng chứng ở `observability-results/`. Đã có 4 ảnh Grafana, Jaeger và
+  Prometheus thật trong `screenshots/`.
