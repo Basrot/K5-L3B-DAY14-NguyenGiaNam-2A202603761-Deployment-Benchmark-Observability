@@ -31,7 +31,7 @@ Chỉ deploy và push vào **fork của học viên**:
 - Bài nộp đã được fast-forward lên `main` của fork, gồm toàn bộ mã nguồn và minh chứng.
 - Commit code/cấu hình deploy: `0c73b13`.
 - Không push vào repo gốc `VinUni-AI20k/...`.
-- Workspace Railway: `Nam Nguyễn 's Projects`.
+- Workspace Railway: workspace cá nhân của học viên.
 - Project: `Lab14 Production Agent` (`4a362d25-2fc8-43ea-9e75-2a7b526494f7`).
 - Environment: `production` (`ac71a226-29db-42be-90b0-0fb0b2676b42`).
 - Agent: `day14-agent` (`45789e8f-5d14-42f7-8a47-b0f6fe89da74`).
