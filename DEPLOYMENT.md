@@ -128,8 +128,9 @@ Report lịch sử: `06-lab-complete/verification/render-planning.json`.
 - [Deployment dashboard](screenshots/dashboard.png) — ảnh Railway người học
   gửi, thấy agent và Redis `Online` cùng deployment `ACTIVE`.
 - [Service running](screenshots/running.png) — log Railway có `/health` trả 200.
-- `screenshots/test.png` — cần ảnh trọn [5 dòng kết quả 4 phép thử](06-lab-complete/verification/railway-public-summary.txt)
-  với HTTP 200/200/401/200, không để lộ key.
+- [Test results](screenshots/test.png) — 4 phép thử HTTP 200/200/401/200,
+  `PASS 4/4`; [output text](06-lab-complete/verification/railway-public-summary.txt)
+  không chứa key.
 
 ## Giới hạn và phần bài nộp còn lại
 
@@ -137,8 +138,7 @@ Report lịch sử: `06-lab-complete/verification/render-planning.json`.
 - Budget kiểm tra trước và cộng sau lời gọi LLM; request đồng thời đã được chấp nhận
   có thể làm tổng vượt ngưỡng trước khi lần gọi sau bị chặn.
 - Redis có volume, nhưng chưa cấu hình HA/backup; đây là deployment lab.
-- CP6 đã có `screenshots/dashboard.png` và `screenshots/running.png`; còn thiếu
-  ảnh thật `test.png` chụp trọn 4 phép thử.
+- CP6 đã có đủ 3 ảnh thật: `dashboard.png`, `running.png`, `test.png`.
 - Part 1–5 đã có kết quả và giải thích trong `MISSION_ANSWERS.md`.
 - Part 7 đã có load test, eval, báo cáo JSON và `BENCHMARK_REPORT.md` mục 1–3;
   quality gate GitHub Actions được thêm nhưng chưa chạy trên GitHub.
