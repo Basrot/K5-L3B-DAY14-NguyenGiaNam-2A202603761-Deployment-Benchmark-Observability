@@ -25,11 +25,12 @@ API yêu cầu JSON, ví dụ `{"question":"Hello"}`, và header `X-API-Key`.
 ## Nguồn code và trạng thái deploy
 
 Chỉ deploy và push vào **fork của học viên**:
-[Basrot / repo bài làm](https://github.com/Basrot/K5-L3B-DAY14-NguyenGiaNam-2A202603761-Deployment-Benchmark-Observability/tree/codex/part6-render).
+[Basrot / repo bài làm](https://github.com/Basrot/K5-L3B-DAY14-NguyenGiaNam-2A202603761-Deployment-Benchmark-Observability).
 
-- Nhánh: `codex/part6-render` (giữ tên nhánh từ giai đoạn chuẩn bị Render).
+- Railway theo dõi nhánh `codex/part6-render` (giữ tên từ giai đoạn chuẩn bị Render).
+- Bài nộp đã được fast-forward lên `main` của fork, gồm toàn bộ mã nguồn và minh chứng.
 - Commit code/cấu hình deploy: `0c73b13`.
-- Không push vào repo gốc `VinUni-AI20k/...`; không thay đổi nhánh `main`.
+- Không push vào repo gốc `VinUni-AI20k/...`.
 - Workspace Railway: `Nam Nguyễn 's Projects`.
 - Project: `Lab14 Production Agent` (`4a362d25-2fc8-43ea-9e75-2a7b526494f7`).
 - Environment: `production` (`ac71a226-29db-42be-90b0-0fb0b2676b42`).
